@@ -13,16 +13,16 @@ export class CidadeService {
 
   }
 
-  public createCity(City: Cidade){
-    return this.httpClient.post(`${this.apiURL}/`, City);
+  public async createCity(City: Cidade){
+    return await this.httpClient.post(`${this.apiURL}/`, City).toPromise();
   }
 
-  public updateCity(City: Cidade){
-    return this.httpClient.put(`${this.apiURL}/${City.id}`, City);
+  public async updateCity(City: Cidade){
+    return await this.httpClient.put(`${this.apiURL}/${City.id}`, City).toPromise();
   }
 
-  public getCityById(id: number){
-    return this.httpClient.get(`${this.apiURL}/${id}`);
+  public async getCityById(id: number){
+    return await this.httpClient.get(`${this.apiURL}/${id}`).toPromise();
   }
 
   public async getCities() {

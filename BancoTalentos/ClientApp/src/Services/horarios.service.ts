@@ -12,16 +12,16 @@ export class HorarioService {
 
   }
 
-  public createAvailability(Schedule: Horario){
-    return this.httpClient.post(`${this.apiURL}/`, Schedule);
+  public async createAvailability(Schedule: Horario){
+    return await this.httpClient.post(`${this.apiURL}/`, Schedule).toPromise();
   }
 
-  public updateAvailability(Schedule: Horario){
-    return this.httpClient.put(`${this.apiURL}/${Schedule.id}`, Schedule);
+  public async updateAvailability(Schedule: Horario){
+    return await this.httpClient.put(`${this.apiURL}/${Schedule.id}`, Schedule).toPromise();
   }
 
-  public getScheduleByCandidateId(candidateId: number){
-    return this.httpClient.get(`${this.apiURL}/${candidateId}`);
+  public async getScheduleByCandidateId(candidateId: number){
+    return await this.httpClient.get(`${this.apiURL}/${candidateId}`).toPromise();
   }
 
   public async getSchedules(){

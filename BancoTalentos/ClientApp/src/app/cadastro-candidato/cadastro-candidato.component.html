@@ -5,10 +5,10 @@
   <div class="row box-cadastro">
     <div class="col-12">
       <h3 class="text-center">Você está prestes a se candidatar a nossas vagas</h3>
-      <form class="mt-5" [formGroup]='candidateForm' (ngSubmit)="onSubmit()">
+      <form class="mt-5" [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="nome">Nome</label>
-          <input type="text" class="form-control cadastro" placeholder="Nome" formControlName='nome'>
+          <input type="text" class="form-control cadastro" placeholder="Nome" formControlName="nome">
         </div>
         <div class="form-group">
           <label for="ultimonome">Sobrenome</label>
@@ -16,48 +16,48 @@
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control cadastro" placeholder="E-mail" formControlName='email'>
+          <input type="email" class="form-control cadastro" placeholder="E-mail" formControlName="email">
         </div>
         <div class="form-group">
           <label for="skype">Skype</label>
-          <input type="text" class="form-control cadastro" placeholder="Skype" formControlName='skype'>
+          <input type="text" class="form-control cadastro" placeholder="Skype" formControlName="skype">
         </div>
         <div class="form-group">
           <label for="telefone">Telefone</label>
-          <input type="tel" class="form-control cadastro" placeholder="Telefone" formControlName='telefone'>
+          <input type="tel" class="form-control cadastro" placeholder="Telefone" formControlName="telefone">
         </div>
         <div class="form-group">
           <label for="portfolio">Portfolio</label>
-          <input type="text" class="form-control cadastro" placeholder="Portfolio" formControlName='portfolio'>
+          <input type="text" class="form-control cadastro" placeholder="Portfolio" formControlName="portfolio">
         </div>
         <div class="form-group">
           <label for="pretensao">Pretensão</label>
-          <input type="text" class="form-control cadastro" placeholder="Pretensao" formControlName='pretensao'>
+          <input type="text" class="form-control cadastro" placeholder="Pretensao" formControlName="pretensao">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control cadastro" placeholder="Password" formControlName='password'>
+          <input type="password" class="form-control cadastro" placeholder="Password" formControlName="password">
         </div>
         <div class="form-group">
           <label for="cidades">Cidade</label>
           <select class="custom-select" formControlName="cidades">
             <option value="" disabled>Escolha a cidade</option>
-            <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{nome}}</option>
+            <option *ngFor="let cidade of cidades" [ngValue]="cidade">{{cidade.nome}}</option>
           </select>
         </div>
         <div class="form-group">
             <label for="estados">Estado</label>
           <select class="custom-select" formControlName="estados">
             <option value="" disabled>Escolha o estado</option>
-            <option *ngFor="let estado of estados" [ngValue]="estado">{{name}}</option>
+            <option *ngFor="let estado of estados" [ngValue]="estado">{{estado.name}}</option>
           </select>
         </div>
         <div class="form-group">
             <label class="field-label">Disponibilidade</label>
             <div class="flex-container">
               <div *ngFor="let disponibilidade of disponibilidades; let i=index;">
-                <input type="checkbox" [formControl]="disponibilidade">
-                {{candidato.disponibilidades[i].descricao}}
+                <input type="checkbox" [formControl]="disponibilidades">
+                {{disponibilidades[i].descricao}}
               </div>
             </div>
         </div>
@@ -65,8 +65,8 @@
             <label class="field-label">Horários</label>
             <div class="flex-container">
               <div *ngFor="let horario of horarios; let i=index;">
-                <input type="checkbox" [formControl]="horario">
-                {{candidato.horarios[i].descricao}}
+                <input type="checkbox" [formControl]="horarios">
+                {{horarios[i].descricao}}
               </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
     </div>
   </div>
   <div class="col-12">
-    <table class='table table-striped' *ngIf="candidatos">
+    <table class='table table-striped'>
       <thead>
         <tr>
           <th>Nome</th>

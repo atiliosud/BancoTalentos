@@ -25,7 +25,8 @@ export class CadastroCandidatoComponent implements OnInit {
   public disponibilidades: Disponibilidade[];
   public horarios: Horario[];
 
-  candidateForm: FormGroup;
+  public candidateForm: FormGroup;
+  promise: any;
 
   constructor(private formBuilder: FormBuilder,
             private candidatoService: CandidatoService,
@@ -35,31 +36,31 @@ export class CadastroCandidatoComponent implements OnInit {
             private horarioService: HorarioService,
             private router: Router
             )
-            {
-                candidatoService.getCandidates()
-                .then(resp =>
-                { this.candidatos = resp; });
-
-                cidadeService.getCities()
-                  .then(resp =>
-                  { this.cidades = resp; });
-
-                estadoService.getStates()
-                  .then(resp =>
-                  { this.estados = resp; });
-
-                disponibilidadeService.getAvailabilities()
-                  .then(resp =>
-                  { this.disponibilidades = resp; });
-
-                horarioService.getSchedules()
-                  .then(resp =>
-                  { this.horarios = resp; });
-            }
+  {
+    this.promise = this.initialize();
+  }
 
 
   ngOnInit() {
+  }
 
+  async initialize() {
+    await this.candidatoService.getCandidates()
+      .then(resp => { this.candidatos = resp; });
+
+    await this.cidadeService.getCities()
+      .then(resp => { this.cidades = resp; });
+
+    await this.estadoService.getStates()
+      .then(resp => { this.estados = resp; });
+
+    await this.disponibilidadeService.getAvailabilities()
+      .then(resp => { this.disponibilidades = resp; });
+
+    await this.horarioService.getSchedules()
+      .then(resp => { this.horarios = resp; });
+
+    console.log(this.candidatos);
     this.createForm(new Candidato());
   }
 
@@ -73,15 +74,16 @@ export class CadastroCandidatoComponent implements OnInit {
       portfolio: [candidato.portfolio, Validators.required],
       pretensao: [candidato.pretensao, Validators.required],
       password: [candidato.password, Validators.required],
-      candidatos: this.formBuilder.array([]),
-      cidades: this.formBuilder.array([]),
-      estados: this.formBuilder.array([]),
-      disponibilidades: this.formBuilder.array([]),
-      horarios: this.formBuilder.array([])
+      candidatos: this.formBuilder.array(this.candidatos),
+      cidades: this.formBuilder.array(this.cidades),
+      estados: this.formBuilder.array(this.estados),
+      disponibilidades: this.formBuilder.array(this.disponibilidades),
+      horarios: this.formBuilder.array(this.horarios)
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
+    console.log(JSON.stringify(this.candidateForm.value));
 
     if (!this.candidateForm.valid) {
       return false;
@@ -91,8 +93,8 @@ export class CadastroCandidatoComponent implements OnInit {
       alert(JSON.stringify(this.candidateForm.value));
     }
 
-    this.candidatoService.createCandidate(this.candidateForm.value)
-      .subscribe( data => {
+    await this.candidatoService.createCandidate(this.candidateForm.value)
+      .then( resp => {
         alert('Cadastro efetuado com sucesso!');
         this.router.navigate(['cadastrocandidatoconcluido']);
       },

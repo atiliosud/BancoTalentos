@@ -12,16 +12,16 @@ export class CandidatoService {
 
   }
 
-  public createCandidate(Candidate: Candidato){
-    return this.httpClient.post(`${this.apiURL}/`, Candidate);
+  public async createCandidate(Candidate: Candidato){
+    return await this.httpClient.post(`${this.apiURL}/`, Candidate).toPromise();
   }
 
-  public updateCandidate(Candidate: Candidato){
-    return this.httpClient.put(`${this.apiURL}/${Candidate.id}`, Candidate);
+  public async updateCandidate(Candidate: Candidato){
+    return await this.httpClient.put(`${this.apiURL}/${Candidate.id}`, Candidate).toPromise();
   }
 
-  public getCandidateById(id: number){
-    return this.httpClient.get(`${this.apiURL}/${id}`);
+  public async getCandidateById(id: number){
+    return await this.httpClient.get(`${this.apiURL}/${id}`).toPromise();
   }
 
   public async getCandidates(){

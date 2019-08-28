@@ -12,16 +12,16 @@ export class DisponibilidadeService {
 
   }
 
-  public createAvailability(Availability: Disponibilidade){
-    return this.httpClient.post(`${this.apiURL}/`, Availability);
+  public async createAvailability(Availability: Disponibilidade){
+    return await this.httpClient.post(`${this.apiURL}/`, Availability).toPromise();
   }
 
-  public updateAvailability(Availability: Disponibilidade){
-    return this.httpClient.put(`${this.apiURL}/${Availability.id}`, Availability);
+  public async updateAvailability(Availability: Disponibilidade){
+    return await this.httpClient.put(`${this.apiURL}/${Availability.id}`, Availability).toPromise();
   }
 
-  public getAvailabilityByCandidateId(candidateId: number){
-    return this.httpClient.get(`${this.apiURL}/${candidateId}`);
+  public async getAvailabilityByCandidateId(candidateId: number){
+    return await this.httpClient.get(`${this.apiURL}/${candidateId}`).toPromise();
   }
 
   public async getAvailabilities(){
