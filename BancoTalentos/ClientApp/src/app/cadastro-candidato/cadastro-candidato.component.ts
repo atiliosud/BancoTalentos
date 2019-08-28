@@ -26,7 +26,6 @@ export class CadastroCandidatoComponent implements OnInit {
   public horarios: Horario[];
 
   public candidateForm: FormGroup;
-  promise: any;
 
   constructor(private formBuilder: FormBuilder,
             private candidatoService: CandidatoService,
@@ -37,7 +36,7 @@ export class CadastroCandidatoComponent implements OnInit {
             private router: Router
             )
   {
-    this.promise = this.initialize();
+    this.initialize();
   }
 
 

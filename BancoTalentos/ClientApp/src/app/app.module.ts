@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CadastroCandidatoComponent } from './cadastro-candidato/cadastro-candidato.component';
 import { CadastroCandidatoConcluidoComponent } from './cadastro-candidato-concluido/cadastro-candidato-concluido.component';
 
@@ -20,7 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    FetchDataComponent,
     CadastroCandidatoComponent,
     CadastroCandidatoConcluidoComponent
   ],
