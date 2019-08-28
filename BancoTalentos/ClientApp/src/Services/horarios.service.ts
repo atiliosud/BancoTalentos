@@ -24,7 +24,7 @@ export class HorarioService {
     return this.httpClient.get(`${this.apiURL}/${candidateId}`);
   }
 
-  public getSchedules(){
-    return this.httpClient.get<Horario[]>(`${this.apiURL}/List`);
+  public async getSchedules(){
+    return await this.httpClient.get<Horario[]>(`${this.apiURL}/List`).toPromise();
   }
 }

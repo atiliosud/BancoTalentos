@@ -1,5 +1,5 @@
 
-export interface Candidato {
+export class Candidato {
     id: number;
     nome: string;
     ultimoNome: string;

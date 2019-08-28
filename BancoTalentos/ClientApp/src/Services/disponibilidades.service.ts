@@ -24,7 +24,7 @@ export class DisponibilidadeService {
     return this.httpClient.get(`${this.apiURL}/${candidateId}`);
   }
 
-  public getAvailabilities(){
-    return this.httpClient.get<Disponibilidade[]>(`${this.apiURL}/List`);
+  public async getAvailabilities(){
+    return await this.httpClient.get<Disponibilidade[]>(`${this.apiURL}/List`).toPromise();
   }
 }

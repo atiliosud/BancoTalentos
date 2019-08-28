@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cidade } from '../Models/Cidade';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class CidadeService {
     return this.httpClient.get(`${this.apiURL}/${id}`);
   }
 
-  public getCities(){
-    return this.httpClient.get<Cidade[]>(`${this.apiURL}/List`);
+  public async getCities() {
+    return await this.httpClient.get<Cidade[]>(`${this.apiURL}/List`).toPromise();
   }
 }

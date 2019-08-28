@@ -37,29 +37,42 @@ export class CadastroCandidatoComponent implements OnInit {
             )
             {
                 candidatoService.getCandidates()
-                .subscribe(resp => { this.candidatos = resp; });
+                .then(resp =>
+                { this.candidatos = resp; });
+
                 cidadeService.getCities()
-                .subscribe(resp => { this.cidades = resp; });
+                  .then(resp =>
+                  { this.cidades = resp; });
+
                 estadoService.getStates()
-                .subscribe(resp => { this.estados = resp; });
+                  .then(resp =>
+                  { this.estados = resp; });
+
                 disponibilidadeService.getAvailabilities()
-                .subscribe(resp => { this.disponibilidades = resp; });
+                  .then(resp =>
+                  { this.disponibilidades = resp; });
+
                 horarioService.getSchedules()
-                .subscribe(resp => { this.horarios = resp; });
+                  .then(resp =>
+                  { this.horarios = resp; });
             }
 
 
   ngOnInit() {
 
+    this.createForm(new Candidato());
+  }
+
+  createForm(candidato: Candidato) {
     this.candidateForm = this.formBuilder.group({
-      nome: ['', Validators.required],
-      ultimonome: ['', Validators.required],
-      email: ['', Validators.required],
-      skype: ['', Validators.required],
-      telefone: ['', Validators.required],
-      portfolio: ['', Validators.required],
-      pretensao: ['', Validators.required],
-      password: ['', Validators.required],
+      nome: [candidato.nome, Validators.required],
+      ultimonome: [candidato.ultimoNome, Validators.required],
+      email: [candidato.email, Validators.required],
+      skype: [candidato.skype, Validators.required],
+      telefone: [candidato.telefone, Validators.required],
+      portfolio: [candidato.portfolio, Validators.required],
+      pretensao: [candidato.pretensao, Validators.required],
+      password: [candidato.password, Validators.required],
       candidatos: this.formBuilder.array([]),
       cidades: this.formBuilder.array([]),
       estados: this.formBuilder.array([]),
@@ -73,6 +86,8 @@ export class CadastroCandidatoComponent implements OnInit {
     if (!this.candidateForm.valid) {
       return false;
     } else {
+      // chamando a função createForm para limpar os campos na tela
+      this.createForm(new Candidato());
       alert(JSON.stringify(this.candidateForm.value));
     }
 

@@ -24,7 +24,7 @@ export class CandidatoService {
     return this.httpClient.get(`${this.apiURL}/${id}`);
   }
 
-  public getCandidates(){
-    return this.httpClient.get<Candidato[]>(`${this.apiURL}/List`);
+  public async getCandidates(){
+    return await this.httpClient.get<Candidato[]>(`${this.apiURL}/List`).toPromise();
   }
 }

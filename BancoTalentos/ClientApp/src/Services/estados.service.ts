@@ -12,7 +12,7 @@ export class EstadoService {
 
   }
 
-  public getStates(){
-    return this.httpClient.get<Estado[]>(`${this.apiURL}/List`);
+  public async getStates(){
+    return await this.httpClient.get<Estado[]>(`${this.apiURL}/List`).toPromise();
   }
 }

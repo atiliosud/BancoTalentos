@@ -1,4 +1,4 @@
-export interface Horario {
+export class Horario {
     id: number;
     descricao: string;
     horarios: any[];

@@ -1,7 +1,7 @@
-import { Candidato } from "./candidato";
+import { Candidato } from './candidato';
 
 
-export interface Cidade {
+export class Cidade {
     id: number;
     nome: string;
     estado: any;
