@@ -7,6 +7,6 @@ import { CandidatoService } from '../Services/candidato.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Easy Test - Banco de Talentos';
+  title = 'UDS Test - Banco de Talentos';
   constructor(private apiService: CandidatoService) {}
 }
